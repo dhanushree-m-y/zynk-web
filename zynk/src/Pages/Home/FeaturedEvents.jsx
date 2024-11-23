@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import image1 from "../../assets/FeaturedEvents/htmd.png"
+import image2 from "../../assets/FeaturedEvents/unfold24.png"
+import image3 from "../../assets/FeaturedEvents/AIcamp.png"
 import { 
   Calendar, 
   MapPin, 
@@ -21,12 +24,12 @@ const FeaturedEvents = () => {
   const featuredEvents = [
     {
       id: 1,
-      title: "Tech Innovation Summit 2024",
-      image: "/api/placeholder/800/600",
-      date: "Dec 15, 2024",
-      time: "9:00 AM - 6:00 PM",
-      location: "San Francisco, CA",
-      venue: "Innovation Center",
+      title: "HTMD Conference",
+      image: image1,
+      date: "Dec 07, 2024",
+      time: "9:00 AM - 5:00 PM",
+      location: "Microsoft reactor-Lavelle Road",
+      venue: "Lavelle Road,Bengaluru",
       category: "Conference",
       price: 299,
       rating: 4.8,
@@ -38,12 +41,12 @@ const FeaturedEvents = () => {
     },
     {
       id: 2,
-      title: "Global Hackathon Challenge",
-      image: "/api/placeholder/800/600",
-      date: "Dec 18-20, 2024",
-      time: "48 Hours",
-      location: "Virtual Event",
-      venue: "Online Platform",
+      title: "Unfold 24",
+      image: image2,
+      date: "Dec 1-2, 2024",
+      time: "24 Hours",
+      location: "Marriott Hotel Whitefield",
+      venue: "Whitefield, Bengaluru",
       category: "Hackathon",
       price: 0,
       rating: 4.9,
@@ -55,14 +58,14 @@ const FeaturedEvents = () => {
     },
     {
       id: 3,
-      title: "AI & ML Workshop Series",
-      image: "/api/placeholder/800/600",
-      date: "Dec 22, 2024",
-      time: "10:00 AM - 4:00 PM",
-      location: "New York, NY",
-      venue: "Tech Hub NYC",
-      category: "Workshop",
-      price: 149,
+      title: "AI Camp",
+      image: image3,
+      date: "Dec 07, 2024",
+      time: "10:00 AM - 1:00 PM",
+      location: "Yuvapatha",
+      venue: "Benagaluru",
+      category: "Meetup",
+      price: 0,
       rating: 4.7,
       attendees: 300,
       spotsLeft: 30,

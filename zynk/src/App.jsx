@@ -1,10 +1,12 @@
+// App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './Components/Layout/layout.jsx';
-import Home from './Pages/Home/home.jsx';
-import About from './Pages/About/AboutHero.jsx';
-import FeaturedEvents from './Pages/Home/FeaturedEvents.jsx';
-import TechEventCategories from './Pages/Home/TechEventCategories.jsx';
+import Layout from "./Components/Layout/Layout.jsx";
+import Home from "./Pages/Home/Home.jsx";
+import About from "./Pages/Home/HowItWorks.jsx";
+import FeaturedEvents from "./Pages/Home/FeaturedEvents.jsx";
+import TechEventCategories from "./Pages/Home/TechEventCategories.jsx";
+import ContactPage from "./Pages/Contact/ContactPage.jsx";  // Uncomment this
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           <Route path="/events/featured" element={<FeaturedEvents />} />
           <Route path="/events" element={<TechEventCategories />} />
           <Route path="/events/:category" element={<TechEventCategories />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </Layout>
     </Router>

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Target, Users, Sparkles, Globe, Shield, Award,
   Search, MapPin, Calendar, Share2, MessageSquare,
-  Filter, Hash, TrendingUp, Trophy, Laptop, Gift
+  Filter, Hash, TrendingUp, Trophy, Laptop, Gift,
+  ChevronLeft, ChevronRight
 } from 'lucide-react';
 
 const AboutHero = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+
   const coreValues = [
     {
       icon: Target,
@@ -65,9 +68,17 @@ const AboutHero = () => {
     }
   ];
 
+  const handlePrevSlide = () => {
+    setActiveSlide((prevSlide) => (prevSlide === 0 ? coreValues.length - 1 : prevSlide - 1));
+  };
+
+  const handleNextSlide = () => {
+    setActiveSlide((prevSlide) => (prevSlide === coreValues.length - 1 ? 0 : prevSlide + 1));
+  };
+
   return (
     <div className="min-h-screen bg-primary-50">
-      {/* Hero Section (Same as before) */}
+      {/* Hero Section */}
       <div className="relative bg-gradient-to-b from-primary-900 via-primary-800 to-primary-700 py-24">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-72 h-72 bg-tertiary-500 rounded-full filter blur-[120px] opacity-20" />
@@ -209,8 +220,8 @@ const AboutHero = () => {
         </div>
       </div>
 
-      {/* Core Values Section (Same as before) */}
-      <div className="py-20 bg-gradient-to-b from-primary-800 to-primary-900">
+      {/* Core Values Section */}
+      <div className="py-20 bg-gradient-to-b from-primary-800 to-primary-900 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-secondary-50 mb-4">Our Core Values</h2>
@@ -219,27 +230,45 @@ const AboutHero = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {coreValues.map((value, index) => {
-              const Icon = value.icon;
-              return (
-                <div 
-                  key={index}
-                  className="bg-primary-800/50 backdrop-blur-sm border border-primary-700/50 rounded-xl p-6 hover:transform hover:-translate-y-1 transition-all"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-tertiary-600/20 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-tertiary-400" />
+          <div className="relative">
+            <button
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primary-800/50 hover:bg-primary-700/50 text-secondary-50 rounded-full p-2 transition-colors z-10"
+              onClick={handlePrevSlide}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {coreValues.map((value, index) => {
+                const Icon = value.icon;
+                return (
+                  <div
+                    key={index}
+                    className={`bg-primary-800/50 backdrop-blur-sm border border-primary-700/50 rounded-xl p-6 hover:transform hover:-translate-y-1 transition-all ${
+                      activeSlide === index
+                        ? 'scale-105 shadow-xl'
+                        : 'scale-100 shadow-lg'
+                    }`}
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-tertiary-600/20 flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6 text-tertiary-400" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-secondary-50 mb-3">{value.title}</h3>
+                    <p className="text-primary-100">{value.description}</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-secondary-50 mb-3">{value.title}</h3>
-                  <p className="text-primary-100">{value.description}</p>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+            <button
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primary-800/50 hover:bg-primary-700/50 text-secondary-50 rounded-full p-2 transition-colors z-10"
+              onClick={handleNextSlide}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Stats Section (Same as before) */}
+      {/* Stats Section */}
       <div className="py-20 bg-gradient-to-b from-primary-900 to-primary-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">

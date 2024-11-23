@@ -1,7 +1,7 @@
 // src/Pages/Home/Home.jsx
 import React from 'react';
-import Hero from './hero.jsx';
-import FeaturedEvents from './FeaturedEvents.jsx';
+import Hero from "./Hero.jsx";
+import FeaturedEvents from "./FeaturedEvents.jsx";
 
 const Home = () => {
   return (

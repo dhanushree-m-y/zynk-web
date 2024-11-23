@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import image2 from "../../assets/FeaturedHackathons/Ethindia.jpeg"
+import image1 from "..//../assets/FeaturedHackathons/GenAI.png"
+import image3 from "..//../assets/FeaturedHackathons/CTF.png"
 import { 
   Search, 
   Code2,
@@ -83,27 +86,27 @@ const TechEventCategories = () => {
   const featuredHackathons = [
     {
       id: 1,
-      title: "Global AI Hackathon 2024",
+      title: "Gen AI",
       category: "ai-ml",
-      image: "/api/placeholder/800/600",
-      date: "Dec 15-17, 2024",
-      location: "Virtual & San Francisco, CA",
-      prizePool: "$50,000",
+      image: image1,
+      date: "Dec 6-8, 2024",
+      location: "Thomson Reuters",
+      prizePool: "TBA",
       rating: 4.9,
-      attendees: 1500,
-      tags: ["AI", "Machine Learning", "Cloud"],
+      attendees: 200,
+      tags: ["AI", "Machine Learning", "Gen AI"],
       isHot: true,
       deadline: "Dec 1, 2024",
-      sponsoredBy: ["Microsoft", "AWS", "Google Cloud"]
+      sponsoredBy: ["Thomson Reuters"]
     },
     {
       id: 2,
-      title: "Blockchain Innovation Challenge",
+      title: "ETHINDIA",
       category: "blockchain",
-      image: "/api/placeholder/800/600",
-      date: "Jan 5-7, 2025",
-      location: "New York, NY",
-      prizePool: "$35,000",
+      image: image2,
+      date: "Dec 6-8, 2024",
+      location: "KTPO,Bengaluru",
+      prizePool: "35,000",
       rating: 4.8,
       attendees: 800,
       tags: ["Web3", "DeFi", "Blockchain"],
@@ -113,12 +116,12 @@ const TechEventCategories = () => {
     },
     {
       id: 3,
-      title: "CyberSec Defense Hackathon",
+      title: "CyberSecurity Hackathon",
       category: "cybersecurity",
-      image: "/api/placeholder/800/600",
-      date: "Dec 22-24, 2024",
-      location: "Virtual",
-      prizePool: "$25,000",
+      image: image3,
+      date: "Dec 4-6, 2024",
+      location: "Pullman,Delhi",
+      prizePool: "4,50,000",
       rating: 4.7,
       attendees: 600,
       tags: ["Security", "CTF", "Network"],
@@ -150,7 +153,7 @@ const TechEventCategories = () => {
           </p>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-2xl mx-auto mb-20">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-primary-400" />
               <input
@@ -162,48 +165,46 @@ const TechEventCategories = () => {
               />
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Categories Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((category) => {
-            const Icon = category.icon;
-            return (
-              <div
-                key={category.id}
-                className="bg-secondary-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer transform hover:-translate-y-1"
-              >
-                <div className={`h-2 bg-gradient-to-r ${category.color}`} />
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className={`p-3 rounded-lg bg-gradient-to-br ${category.color} text-secondary-50`}>
-                        <Icon className="w-6 h-6" />
+          {/* Categories Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {categories.map((category) => {
+              const Icon = category.icon;
+              return (
+                <div
+                  key={category.id}
+                  className="bg-secondary-50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer transform hover:-translate-y-1"
+                >
+                  <div className={`h-2 bg-gradient-to-r ${category.color}`} />
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center">
+                        <div className={`p-3 rounded-lg bg-gradient-to-br ${category.color} text-secondary-50`}>
+                          <Icon className="w-6 h-6" />
+                        </div>
+                        <div className="ml-4">
+                          <h3 className="text-xl font-semibold text-primary-900">{category.title}</h3>
+                          <span className="text-primary-600 text-sm">{category.count} events</span>
+                        </div>
                       </div>
-                      <div className="ml-4">
-                        <h3 className="text-xl font-semibold text-primary-900">{category.title}</h3>
-                        <span className="text-primary-600 text-sm">{category.count} events</span>
-                      </div>
+                      <ChevronRight className="w-5 h-5 text-primary-400 group-hover:text-primary-600 transform group-hover:translate-x-1 transition-all" />
                     </div>
-                    <ChevronRight className="w-5 h-5 text-primary-400 group-hover:text-primary-600 transform group-hover:translate-x-1 transition-all" />
-                  </div>
-                  <p className="text-primary-600 mb-4">{category.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {category.subcategories.map((sub, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm hover:bg-primary-100 transition-colors"
-                      >
-                        {sub}
-                      </span>
-                    ))}
+                    <p className="text-primary-600 mb-4">{category.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {category.subcategories.map((sub, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm hover:bg-primary-100 transition-colors"
+                        >
+                          {sub}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </section>
 
