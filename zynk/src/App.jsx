@@ -1,20 +1,14 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from "./Components/Layout/Layout.jsx";
 import Home from "./Pages/Home/Home.jsx";
-import About from "./Pages/Home/HowItWorks.jsx";
+import About from "./Pages/About/about.jsx";  // Correct import
 import FeaturedEvents from "./Pages/Home/FeaturedEvents.jsx";
 import TechEventCategories from "./Pages/Home/TechEventCategories.jsx";
 import ContactPage from "./Pages/Contact/ContactPage.jsx";
 
 function App() {
   return (
-    <Router
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <Router>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

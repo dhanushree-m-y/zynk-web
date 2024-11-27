@@ -1,13 +1,13 @@
 import React from 'react';
-import Hero from './hero';
-import AboutHero from "./AboutHero";
+import AboutHero from './AboutHero';
+import Newsletter from './Newsletter';
 
-function Home() {
+function About() {
   return (
     <div className="min-h-screen">
       <AboutHero />
-      <Newsletter/>
-      {/* Add other home page sections here */}
+      <Newsletter />
+      {/* Add other about page sections here */}
     </div>
   );
 }
