@@ -9,18 +9,14 @@ import About from "./Pages/About/about.jsx";
 import Login from "./Pages/Auth/Login.jsx";
 import SignupPage from "./Pages/Auth/SignupPage.jsx";
 import OrganizeEvent from "./Pages/Events/OrganizeEvent.jsx";
-import Hackathon from "./Pages/Events/Hackathon.jsx"
+import Hackathon from "./Pages/Events/Hackathon.jsx";
 import Profile from "./Pages/Profile/Profile.jsx";
 import Conference from "./Pages/Events/Conference.jsx";
-
+import Posts from "./Pages/Posts/Posts.jsx"; 
+import Settings from "./Pages/Profile/Settings.jsx";
 function App() {
   return (
-    <Router
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <Router>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -29,12 +25,14 @@ function App() {
           <Route path="/events" element={<TechEventCategories />} />
           <Route path="/events/:category" element={<TechEventCategories />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/login" element={<Login />} /> {/* Login route added */}
-          <Route path="/signup" element={<SignupPage />} /> {/* Signup route added */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="/organize-event" element={<OrganizeEvent />} />
           <Route path="/hackathons" element={<Hackathon />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/conference" element={<Conference />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </Layout>
     </Router>
