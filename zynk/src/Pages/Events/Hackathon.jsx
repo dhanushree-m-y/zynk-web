@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import image1 from "../../assets/FeaturedEvents/htmd.png"
+import image2 from "../../assets/FeaturedHackathons/Ethindia.jpeg"
 import { ChevronLeft, ChevronRight, Calendar, MapPin, Users } from "lucide-react";
 
 const Hackathon = () => {
@@ -18,7 +20,7 @@ const Hackathon = () => {
       id: 1,
       title: 'Gen AI',
       category: 'aiml',
-      image: '/images/genai-hackathon.jpg',
+      image: image1,
       date: 'Dec 6-8, 2024',
       location: 'Thomson Reuters',
       participants: '200 participating',
@@ -31,7 +33,7 @@ const Hackathon = () => {
       id: 2,
       title: 'ETHINDIA',
       category: 'blockchain',
-      image: '/images/ethereum-hackathon.jpg',
+      image: image2,
       date: 'Dec 6-8, 2024',
       location: 'KTPO,Bengaluru',
       participants: '800 participating',
