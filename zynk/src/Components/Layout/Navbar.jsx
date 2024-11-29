@@ -99,7 +99,6 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-tertiary-500 to-tertiary-700" />
               <span className="ml-2 text-xl font-bold text-secondary-50">Zynk</span>
             </a>
           </div>

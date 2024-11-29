@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal } from 'lucide-react';
+import Image1 from "../../assets/PostsImage/Image1.jpg"
+import Image2 from "../../assets/PostsImage/Image2.jpg"
 
-const Posts = ({ post, onLike, onSave }) => {
+const EventPost = ({ post, onLike, onSave }) => {
   const [comment, setComment] = useState('');
 
   const handleComment = (e) => {
@@ -12,81 +14,81 @@ const Posts = ({ post, onLike, onSave }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-6">
-      {/* Header */}
-      <div className="flex items-center justify-between p-3">
+    <div className="max-w-2xl mx-auto bg-white/90 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg border border-primary-100 mb-6 transition-all duration-300 hover:shadow-xl">
+      <div className="flex items-center justify-between p-3 bg-primary-50">
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-gray-200 rounded-full overflow-hidden">
+          <div className="w-10 h-10 bg-primary-200 rounded-full overflow-hidden border-2 border-primary-300">
             <img 
               src={post.user.avatar}
               alt={post.user.username}
               className="w-full h-full object-cover"
             />
           </div>
-          <span className="font-medium">{post.user.username}</span>
+          <span className="font-medium text-primary-800">{post.user.username}</span>
         </div>
-        <button className="text-gray-600">
+        <button className="text-primary-600 hover:text-primary-700 p-1 rounded-full hover:bg-primary-100 transition-colors">
           <MoreHorizontal className="w-5 h-5" />
         </button>
       </div>
 
-      {/* Image */}
-      <div className="aspect-square w-full bg-gray-100">
+      <div className="aspect-[4/3] w-full bg-primary-50">
         <img 
           src={post.event.image}
           alt="Event"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
       </div>
 
-      {/* Action Buttons */}
-      <div className="p-3">
+      <div className="p-4">
         <div className="flex justify-between mb-2">
           <div className="flex space-x-4">
-            <button onClick={() => onLike(post.id)}>
-              <Heart className={`w-6 h-6 ${post.liked ? 'fill-red-500 text-red-500' : 'text-gray-700'}`} />
+            <button onClick={() => onLike(post.id)} className="hover:scale-110 transition-transform">
+              <Heart className={`w-6 h-6 ${post.liked ? 'fill-primary-500 text-primary-500' : 'text-primary-600'}`} />
             </button>
-            <button>
-              <MessageCircle className="w-6 h-6 text-gray-700" />
+            <button className="hover:scale-110 transition-transform">
+              <MessageCircle className="w-6 h-6 text-primary-600" />
             </button>
-            <button>
-              <Share2 className="w-6 h-6 text-gray-700" />
+            <button className="hover:scale-110 transition-transform">
+              <Share2 className="w-6 h-6 text-primary-600" />
             </button>
           </div>
-          <button onClick={() => onSave(post.id)}>
-            <Bookmark className={`w-6 h-6 ${post.saved ? 'fill-current text-gray-700' : 'text-gray-700'}`} />
+          <button onClick={() => onSave(post.id)} className="hover:scale-110 transition-transform">
+            <Bookmark className={`w-6 h-6 ${post.saved ? 'fill-current text-primary-600' : 'text-primary-600'}`} />
           </button>
         </div>
 
-        {/* Likes */}
-        <div className="font-medium mb-2">{post.event.likes} likes</div>
+        <div className="font-medium text-primary-800 mb-2">{post.event.likes} likes</div>
 
-        {/* Caption */}
         <div className="mb-2">
-          <span className="font-medium mr-2">{post.user.username}</span>
+          <span className="font-medium text-primary-800 mr-2">{post.user.username}</span>
           <span className="text-gray-800">{post.event.caption}</span>
+          <div className="mt-1 space-x-2">
+            {post.event.caption.match(/#\w+/g)?.map((tag, index) => (
+              <span key={index} className="text-primary-600 hover:text-primary-700 cursor-pointer text-sm">
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Comments */}
-        <div className="text-gray-500 text-sm mb-2">
+        <div className="text-primary-500 text-sm mb-2 cursor-pointer hover:text-primary-600">
           View all comments
         </div>
         {post.event.comments.map((comment, index) => (
           <div key={index} className="mb-1">
-            <span className="font-medium mr-2">{comment.username}</span>
-            <span>{comment.text}</span>
+            <span className="font-medium text-primary-800 mr-2">{comment.username}</span>
+            <span className="text-gray-800">{comment.text}</span>
           </div>
         ))}
         <div className="text-gray-400 text-xs uppercase mt-1">
           {post.event.timestamp}
         </div>
 
-        {/* Comment Input */}
-        <form onSubmit={handleComment} className="mt-3 border-t pt-3">
+        <form onSubmit={handleComment} className="mt-3 border-t border-primary-100 pt-3">
           <input
             type="text"
             placeholder="Add a comment..."
-            className="w-full text-sm outline-none"
+            className="w-full text-sm outline-none bg-transparent placeholder-primary-400 text-primary-800 focus:border-b-2 focus:border-primary-500 transition-colors"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
@@ -96,7 +98,9 @@ const Posts = ({ post, onLike, onSave }) => {
   );
 };
 
-const EventFeed = () => {
+const Posts = () => {
+  const tags = ['#Hackathons', '#TechTalks', '#Workshops', '#Innovation', '#AI', '#WebDev', '#BlockchainTech', '#CloudComputing'];
+  
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -105,7 +109,7 @@ const EventFeed = () => {
         avatar: '/api/placeholder/40/40'
       },
       event: {
-        image: '/api/placeholder/400/400',
+        image: Image1,
         likes: 52,
         caption: 'Just wrapped up an amazing weekend at #AIHackathon2024! Built a cool project with @dev_team. Proud to win the Best Innovation award! 🏆 #TechEvents #Hackathon #Innovation',
         timestamp: '2 HOURS AGO',
@@ -126,7 +130,7 @@ const EventFeed = () => {
         avatar: '/api/placeholder/40/40'
       },
       event: {
-        image: '/api/placeholder/400/400',
+        image: Image2,
         likes: 128,
         caption: 'Excited to share our workshop on Quantum Computing at #TechCon2024! Amazing turnout and great questions from everyone. Thanks for having me! 🚀 #QuantumComputing #Tech',
         timestamp: '5 HOURS AGO',
@@ -138,56 +142,6 @@ const EventFeed = () => {
           {
             username: 'tech_enthusiast',
             text: 'The practical examples were super helpful! 🙌'
-          }
-        ]
-      },
-      liked: false,
-      saved: false
-    },
-    {
-      id: 3,
-      user: {
-        username: 'data_ninja',
-        avatar: '/api/placeholder/40/40'
-      },
-      event: {
-        image: '/api/placeholder/400/400',
-        likes: 89,
-        caption: 'Day 2 at #DataSummit2024! Leading a workshop on advanced ML techniques. Join us in Room 42 for hands-on practice with real-world datasets! 📊 #MachineLearning #DataScience',
-        timestamp: '1 DAY AGO',
-        comments: [
-          {
-            username: 'ml_expert',
-            text: 'Great insights on model optimization!'
-          },
-          {
-            username: 'data_scientist',
-            text: 'Those visualization techniques were game-changing 📈'
-          }
-        ]
-      },
-      liked: false,
-      saved: false
-    },
-    {
-      id: 4,
-      user: {
-        username: 'devops_pro',
-        avatar: '/api/placeholder/40/40'
-      },
-      event: {
-        image: '/api/placeholder/400/400',
-        likes: 76,
-        caption: 'Wrapping up the Cloud Native DevOps Summit! Incredible discussions on kubernetes and microservices architecture. Thanks everyone who attended my session! ☁️ #DevOps #Cloud #k8s',
-        timestamp: '2 DAYS AGO',
-        comments: [
-          {
-            username: 'cloud_architect',
-            text: 'Your monitoring setup demo was excellent!'
-          },
-          {
-            username: 'k8s_lover',
-            text: 'Can you share the slides? Really valuable content 🙏'
           }
         ]
       },
@@ -225,31 +179,35 @@ const EventFeed = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
-      {/* Header Section */}
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-primary-700 mb-3">Event Highlights</h1>
-        <p className="text-gray-600 mb-4">
+    <div className="min-h-screen bg-gradient-to-b from-primary-700 to-primary-800 py-8">
+      <div className="max-w-4xl mx-auto px-4 mb-12 text-center">
+        <h1 className="text-5xl font-bold text-white mb-4">Event Highlights</h1>
+        <p className="text-xl text-primary-100 mb-8">
           Discover the latest tech events and hackathons shared by our community
         </p>
-        <div className="flex flex-wrap justify-center gap-2 mb-6">
-          <span className="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm">#Hackathons</span>
-          <span className="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm">#TechTalks</span>
-          <span className="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm">#Workshops</span>
-          <span className="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm">#Innovation</span>
+        <div className="flex flex-wrap justify-center gap-3">
+          {tags.map((tag, index) => (
+            <span 
+              key={index} 
+              className="bg-primary-600/30 backdrop-blur-sm px-6 py-2 rounded-full text-white hover:bg-primary-600/50 transition-colors cursor-pointer"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
-        <div className="h-px bg-gradient-to-r from-transparent via-primary-200 to-transparent mb-8"></div>
+        <div className="h-px bg-gradient-to-r from-transparent via-primary-400 to-transparent opacity-30 mt-8"></div>
       </div>
 
-      {/* Event Posts */}
-      {posts.map(post => (
-        <EventPost
-          key={post.id}
-          post={post}
-          onLike={handleLike}
-          onSave={handleSave}
-        />
-      ))}
+      <div className="max-w-2xl mx-auto px-4">
+        {posts.map(post => (
+          <EventPost
+            key={post.id}
+            post={post}
+            onLike={handleLike}
+            onSave={handleSave}
+          />
+        ))}
+      </div>
     </div>
   );
 };
